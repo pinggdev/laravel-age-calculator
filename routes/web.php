@@ -15,3 +15,4 @@ use App\Http\Controllers\ImunisasiController;
 */
 
 Route::get('/', [ImunisasiController::class, 'index']);
+Route::get('/tanggal', [ImunisasiController::class, 'tanggalImunisasi']);

@@ -10,4 +10,8 @@ class ImunisasiController extends Controller
     public function index(Imunisasi $imunisasi) {
         return view('test', ['imunisasi' => $imunisasi]);
     }
+
+    public function tanggalImunisasi() {
+        return view('tanggal');
+    }
 }
