@@ -4,8 +4,10 @@ import ReactDOM from "react-dom";
 import DatePicker from "react-date-picker";
 
 function Example() {
-    const [value, setValue] = useState(new Date());
-    var bulan = [
+    const [date, setDate] = useState(new Date());
+    const [gender, setGender] = useState();
+    const [submit, setSubmit] = useState();
+    const month = [
         "Januari",
         "Februari",
         "Maret",
@@ -20,80 +22,117 @@ function Example() {
         "Desember",
     ];
 
-    const dateTime = new Date(value.getTime());
+    const clickHandler = (e) => {
+        setSubmit(date);
+        console.log(gender);
+        e.preventDefault();
+    };
+
+    const dateTime = new Date(date.getTime());
 
     const jadwal = [
         {
             usia: "0 Bulan (Baru Lahir)",
             tanggal: `${dateTime.getDate()} / ${
-                bulan[dateTime.getMonth()]
+                month[dateTime.getMonth()]
             } / ${dateTime.getFullYear()}`,
         },
         {
             usia: "1 Bulan",
-            tanggal: `${new Date(value.getTime() + 2592000000).getDate()} / ${
-                bulan[new Date(value.getTime() + 2592000000).getMonth()]
-            } / ${new Date(value.getTime() + 2592000000).getFullYear()}`,
+            tanggal: `${new Date(date.getTime() + 2592000000).getDate()} / ${
+                month[new Date(date.getTime() + 2592000000).getMonth()]
+            } / ${new Date(date.getTime() + 2592000000).getFullYear()}`,
         },
         {
             usia: "2 Bulan",
             tanggal: `${new Date(
-                value.getTime() + 2592000000 * 2
+                date.getTime() + 2592000000 * 2
             ).getDate()} / ${
-                bulan[new Date(value.getTime() + 2592000000 * 2).getMonth()]
-            } / ${new Date(value.getTime() + 2592000000 * 2).getFullYear()} `,
+                month[new Date(date.getTime() + 2592000000 * 2).getMonth()]
+            } / ${new Date(date.getTime() + 2592000000 * 2).getFullYear()} `,
         },
         {
             usia: "3 Bulan",
             tanggal: `${new Date(
-                value.getTime() + 2592000000 * 3
+                date.getTime() + 2592000000 * 3
             ).getDate()} / ${
-                bulan[new Date(value.getTime() + 2592000000 * 3).getMonth()]
-            } / ${new Date(value.getTime() + 2592000000 * 3).getFullYear()} `,
+                month[new Date(date.getTime() + 2592000000 * 3).getMonth()]
+            } / ${new Date(date.getTime() + 2592000000 * 3).getFullYear()} `,
         },
         {
             usia: "4 Bulan",
             tanggal: `${new Date(
-                value.getTime() + 2592000000 * 3 + 1728000000
+                date.getTime() + 2592000000 * 3 + 1728000000
             ).getDate()} / ${
-                bulan[
+                month[
                     new Date(
-                        value.getTime() + 2592000000 * 3 + 1728000000
+                        date.getTime() + 2592000000 * 3 + 1728000000
                     ).getMonth()
                 ]
             } / ${new Date(
-                value.getTime() + 2592000000 * 3 + 1728000000
+                date.getTime() + 2592000000 * 3 + 1728000000
             ).getFullYear()} `,
         },
         {
             usia: "9 Bulan",
             tanggal: `${new Date(
-                value.getTime() + 2592000000 * 3 + 1728000000 + 13824000000
+                date.getTime() + 2592000000 * 3 + 1728000000 + 13824000000
             ).getDate()} / ${
-                bulan[
+                month[
                     new Date(
-                        value.getTime() +
+                        date.getTime() +
                             2592000000 * 3 +
                             1728000000 +
                             13824000000
                     ).getMonth()
                 ]
             } / ${new Date(
-                value.getTime() + 2592000000 * 3 + 1728000000 + 13824000000
+                date.getTime() + 2592000000 * 3 + 1728000000 + 13824000000
             ).getFullYear()} `,
         },
     ];
 
     return (
         <div>
-            <DatePicker onChange={setValue} value={value} />
-            {jadwal.map((item, index) => (
-                <div key={index}>
+            <h2 className="text-white">Jadwal Imunisasi</h2>
+            <div>
+                <label>Jenis Kelamin</label>
+                <select
+                    defaultValue={"default"}
+                    onChange={(e) => {
+                        setGender(e.target.value);
+                    }}
+                >
+                    <option value={"default"} disabled>
+                        Pilih
+                    </option>
+                    <option value="lakilaki">Laki-Laki</option>
+                    <option value="perempuan">Perempuan</option>
+                </select>
+            </div>
+            <div>
+                <label>Tanggal Lahir</label>
+                <DatePicker
+                    onChange={setDate}
+                    value={date}
+                    clearIcon={null}
+                    format="dd-MM-y"
+                />
+            </div>
+            <button onClick={clickHandler}>Submit</button>
+            {submit && (
                     <p>
-                        {item.usia} - {item.tanggal}
+                        Jenis Kelamin{" "}
+                        {gender === "lakilaki" ? "Laki-Laki" : "Perempuan"}
                     </p>
-                </div>
-            ))}
+                ) &&
+                jadwal.map((item, index) => (
+                    <div key={index}>
+                        <p>
+                            {item.usia} - {item.tanggal}
+                        </p>
+                    </div>
+                ))}
         </div>
     );
 }

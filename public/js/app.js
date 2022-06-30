@@ -6101,6 +6101,10 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 __webpack_require__(/*! ./components/Example */ "./resources/js/components/Example.js");
 
+__webpack_require__(Object(function webpackMissingModule() { var e = new Error("Cannot find module './components/ExampleWithInput'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+
+__webpack_require__(Object(function webpackMissingModule() { var e = new Error("Cannot find module './components/DateInput'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
@@ -6175,35 +6179,86 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 function Example() {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(new Date()),
       _useState2 = _slicedToArray(_useState, 2),
-      value = _useState2[0],
-      setValue = _useState2[1];
+      date = _useState2[0],
+      setDate = _useState2[1];
 
-  var bulan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
-  var dateTime = new Date(value.getTime());
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(),
+      _useState4 = _slicedToArray(_useState3, 2),
+      gender = _useState4[0],
+      setGender = _useState4[1];
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(),
+      _useState6 = _slicedToArray(_useState5, 2),
+      submit = _useState6[0],
+      setSubmit = _useState6[1];
+
+  var month = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+
+  var clickHandler = function clickHandler(e) {
+    setSubmit(date);
+    console.log(gender);
+    e.preventDefault();
+  };
+
+  var dateTime = new Date(date.getTime());
   var jadwal = [{
     usia: "0 Bulan (Baru Lahir)",
-    tanggal: "".concat(dateTime.getDate(), " / ").concat(bulan[dateTime.getMonth()], " / ").concat(dateTime.getFullYear())
+    tanggal: "".concat(dateTime.getDate(), " / ").concat(month[dateTime.getMonth()], " / ").concat(dateTime.getFullYear())
   }, {
     usia: "1 Bulan",
-    tanggal: "".concat(new Date(value.getTime() + 2592000000).getDate(), " / ").concat(bulan[new Date(value.getTime() + 2592000000).getMonth()], " / ").concat(new Date(value.getTime() + 2592000000).getFullYear())
+    tanggal: "".concat(new Date(date.getTime() + 2592000000).getDate(), " / ").concat(month[new Date(date.getTime() + 2592000000).getMonth()], " / ").concat(new Date(date.getTime() + 2592000000).getFullYear())
   }, {
     usia: "2 Bulan",
-    tanggal: "".concat(new Date(value.getTime() + 2592000000 * 2).getDate(), " / ").concat(bulan[new Date(value.getTime() + 2592000000 * 2).getMonth()], " / ").concat(new Date(value.getTime() + 2592000000 * 2).getFullYear(), " ")
+    tanggal: "".concat(new Date(date.getTime() + 2592000000 * 2).getDate(), " / ").concat(month[new Date(date.getTime() + 2592000000 * 2).getMonth()], " / ").concat(new Date(date.getTime() + 2592000000 * 2).getFullYear(), " ")
   }, {
     usia: "3 Bulan",
-    tanggal: "".concat(new Date(value.getTime() + 2592000000 * 3).getDate(), " / ").concat(bulan[new Date(value.getTime() + 2592000000 * 3).getMonth()], " / ").concat(new Date(value.getTime() + 2592000000 * 3).getFullYear(), " ")
+    tanggal: "".concat(new Date(date.getTime() + 2592000000 * 3).getDate(), " / ").concat(month[new Date(date.getTime() + 2592000000 * 3).getMonth()], " / ").concat(new Date(date.getTime() + 2592000000 * 3).getFullYear(), " ")
   }, {
     usia: "4 Bulan",
-    tanggal: "".concat(new Date(value.getTime() + 2592000000 * 3 + 1728000000).getDate(), " / ").concat(bulan[new Date(value.getTime() + 2592000000 * 3 + 1728000000).getMonth()], " / ").concat(new Date(value.getTime() + 2592000000 * 3 + 1728000000).getFullYear(), " ")
+    tanggal: "".concat(new Date(date.getTime() + 2592000000 * 3 + 1728000000).getDate(), " / ").concat(month[new Date(date.getTime() + 2592000000 * 3 + 1728000000).getMonth()], " / ").concat(new Date(date.getTime() + 2592000000 * 3 + 1728000000).getFullYear(), " ")
   }, {
     usia: "9 Bulan",
-    tanggal: "".concat(new Date(value.getTime() + 2592000000 * 3 + 1728000000 + 13824000000).getDate(), " / ").concat(bulan[new Date(value.getTime() + 2592000000 * 3 + 1728000000 + 13824000000).getMonth()], " / ").concat(new Date(value.getTime() + 2592000000 * 3 + 1728000000 + 13824000000).getFullYear(), " ")
+    tanggal: "".concat(new Date(date.getTime() + 2592000000 * 3 + 1728000000 + 13824000000).getDate(), " / ").concat(month[new Date(date.getTime() + 2592000000 * 3 + 1728000000 + 13824000000).getMonth()], " / ").concat(new Date(date.getTime() + 2592000000 * 3 + 1728000000 + 13824000000).getFullYear(), " ")
   }];
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_date_picker__WEBPACK_IMPORTED_MODULE_2__["default"], {
-      onChange: setValue,
-      value: value
-    }), jadwal.map(function (item, index) {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h2", {
+      className: "text-white",
+      children: "Jadwal Imunisasi"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+        children: "Jenis Kelamin"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("select", {
+        defaultValue: "default",
+        onChange: function onChange(e) {
+          setGender(e.target.value);
+        },
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
+          value: "default",
+          disabled: true,
+          children: "Pilih"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
+          value: "lakilaki",
+          children: "Laki-Laki"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
+          value: "perempuan",
+          children: "Perempuan"
+        })]
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+        children: "Tanggal Lahir"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_date_picker__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        onChange: setDate,
+        value: date,
+        clearIcon: null,
+        format: "dd-MM-y"
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+      onClick: clickHandler,
+      children: "Submit"
+    }), submit && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
+      children: ["Jenis Kelamin", " ", gender === "lakilaki" ? "Laki-Laki" : "Perempuan"]
+    }) && jadwal.map(function (item, index) {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
           children: [item.usia, " - ", item.tanggal]

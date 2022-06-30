@@ -28,6 +28,8 @@
         "-": "^0.0.1",
         "laravel": "^0.0.1",
         "mix": "^0.0.1",
-        "react-date-picker": "^8.4.0"
+        "react-date-picker": "^8.4.0",
+        "react-datepicker": "^4.8.0",
+        "react-icons": "^4.4.0"
     }
 }
