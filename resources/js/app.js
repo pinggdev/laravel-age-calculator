@@ -13,5 +13,3 @@ require("./bootstrap");
  */
 
 require("./components/Example");
-require("./components/ExampleWithInput");
-require("./components/DateInput");
